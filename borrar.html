@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Lizza Ledesma - Martillera Pública y Corredora especializada en tasaciones inmobiliarias en Argentina."
+    />
+    <meta name="keywords" content="tasaciones, bienes raíces, martillera pública, corredora inmobiliaria, inmuebles, Argentina" />
+    <meta name="author" content="Lizza Ledesma" />
+    <meta name="robots" content="index, follow" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Lizza Ledesma - Tasaciones Inmobiliarias" />
+    <meta property="og:description" content="Martillera Pública y Corredora especializada en tasaciones inmobiliarias en Argentina." />
+    <meta property="og:image" content="/img/lizza-banner.webp" />
+    <meta property="og:url" content="https://www.lizzaledesma.com" />
+    <meta property="og:site_name" content="Lizza Ledesma - Martillera Pública & Corredora" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Lizza Ledesma - Tasaciones Inmobiliarias" />
+    <meta name="twitter:description" content="Martillera Pública y Corredora especializada en tasaciones inmobiliarias en Argentina." />
+    <meta name="twitter:image" content="/img/lizza-banner.webp" />
+    <link rel="icon" type="image/png" href="/img/favicon.png" />
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-5LN88YCBH0"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag('js', new Date());
+
+      gtag('config', 'G-5LN88YCBH0');
+    </script>
+    <title>Lizza Ledesma - Tasaciones de Inmuebles & Martillera Pública</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #e0dede;
+        color: #333;
+        overflow-x: hidden;
+      }
+
+      /* ====== ANIMACIÓN DE INTRO ====== */
+      .intro {
+        position: fixed; /* Ocupa toda la pantalla */
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background: linear-gradient(135deg, #002147, #3a7ca5);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: #ffffff;
+        text-align: center;
+        z-index: 1000;
+        animation: fadeOut 3s ease-out 3s forwards;
+      }
+
+      .intro-content {
+        opacity: 0;
+        transform: translateY(-20px);
+        animation: fadeIn 2s ease-out forwards;
+      }
+
+      @keyframes fadeIn {
+        0% {
+          opacity: 0;
+          transform: translateY(-20px);
+        }
+        100% {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes fadeOut {
+        0% {
+          opacity: 1;
+        }
+        100% {
+          opacity: 0;
+          visibility: hidden;
+          display: none;
+        }
+      }
+
+      /* ====== ANIMACIÓN DEL CONTENIDO PRINCIPAL ====== */
+      .content {
+        opacity: 0;
+        animation: showContent 1s ease-out 3.5s forwards;
+      }
+
+      @keyframes showContent {
+        0% {
+          opacity: 0;
+        }
+        100% {
+          opacity: 1;
+        }
+      }
+
+      /* Botón de WhatsApp */
+      .whatsapp-button {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        width: 60px;
+        height: 60px;
+        background-color: #25d366;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+        cursor: pointer;
+        transition: transform 0.3s ease;
+        z-index: 1000;
+      }
+      .whatsapp-button:hover {
+        transform: scale(1.1);
+      }
+      .whatsapp-button img {
+        width: 35px;
+        height: 35px;
+      }
+      .whatsapp-hidden {
+        display: none !important;
+      }
+      /* ====== ESTILOS DEL HEADER ====== */
+      header {
+        background: url('/img/lizza-banner.webp') center/cover no-repeat;
+        color: white;
+        padding: 60px 20px;
+        text-align: center;
+        position: relative;
+      }
+
+      /* ====== MENÚ BURGUER ====== */
+      .menu-toggle {
+        display: flex;
+        flex-direction: column;
+        cursor: pointer;
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        z-index: 1001;
+      }
+
+      .menu-toggle div {
+        width: 30px;
+        height: 4px;
+        background-color: white;
+        margin: 5px 0;
+      }
+
+      /* ====== MENÚ DESPLEGABLE ====== */
+      nav {
+        display: none;
+        flex-direction: column;
+        background-color: rgba(0, 67, 143, 0.95);
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        z-index: 1000;
+      }
+
+      nav.show-menu {
+        display: flex;
+      }
+
+      nav ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+
+      nav ul li {
+        padding: 20px;
+      }
+
+      nav ul li a {
+        color: white;
+        text-decoration: none;
+        font-size: 32px;
+        font-weight: bold;
+        transition: transform 0.3s ease-in-out;
+      }
+
+      nav ul li a:hover {
+        transform: scale(1.1);
+      }
+
+      /* ====== ESTILOS DE FORMULARIO ====== */
+      .contact-form {
+        max-width: 500px;
+        margin: 0 auto;
+        background: white;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      }
+
+      .contact-form input,
+      .contact-form textarea {
+        width: 98%;
+        padding: 10px;
+        margin-bottom: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        font-size: 16px;
+      }
+
+      .contact-form button {
+        width: 100%;
+        padding: 10px;
+        background-color: #00438f;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        font-size: 18px;
+        cursor: pointer;
+      }
+
+      .contact-form button:hover {
+        background-color: #002147;
+      }
+
+      /* ====== ESTILOS DE SECCIONES ====== */
+      section {
+        padding: 40px;
+        margin: 20px;
+        border-radius: 10px;
+      }
+
+      #inicio {
+        background-color: #00438f;
+        color: white;
+      }
+      #sobre {
+        background-color: #599bc5;
+        color: white;
+      }
+      #servicios {
+        background-color: #f5f5f5;
+        color: black;
+      }
+      #por-que {
+        background-color: #00438f;
+        color: white;
+      }
+      #faq {
+        background-color: #599bc5;
+        color: white;
+      }
+      #contacto {
+        background-color: #c2c2c2;
+        color: white;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- ANIMACIÓN DE INTRO -->
+    <div class="intro">
+      <div class="intro-content">
+        <h1>Lizza Ledesma</h1>
+        <h2>Martillera Pública & Corredora</h2>
+      </div>
+    </div>
+
+    <!-- CONTENIDO PRINCIPAL -->
+    <div class="content">
+      <header>
+        <h1>Lizza Ledesma</h1>
+        <h2>Martillera Pública & Corredora</h2>
+      </header>
+
+      <!-- MENÚ BURGUER -->
+      <div class="menu-toggle" onclick="toggleMenu()">
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+
+      <!-- MENÚ DESPLEGABLE -->
+      <nav id="menu">
+        <ul>
+          <li><a href="#inicio" onclick="toggleMenu()">Inicio</a></li>
+          <li><a href="#sobre" onclick="toggleMenu()">Sobre mí</a></li>
+          <li><a href="#servicios" onclick="toggleMenu()">Servicios</a></li>
+          <li><a href="#por-que" onclick="toggleMenu()">¿Por qué elegirnos?</a></li>
+          <li><a href="#faq" onclick="toggleMenu()">Preguntas Frecuentes</a></li>
+          <li><a href="#contacto" onclick="toggleMenu()">Contacto</a></li>
+        </ul>
+      </nav>
+
+      <!-- SECCIONES DE LA PÁGINA -->
+      <main>
+        <section id="inicio">
+          <h2>Bienvenido/a</h2>
+          <p>Brindamos tasaciones inmobiliarias precisas y profesionales en Argentina.</p>
+        </section>
+
+        <section id="sobre">
+          <h2>Sobre mí</h2>
+          <p>Soy Lizza Ledesma, martillera pública y corredora con experiencia en tasaciones.</p>
+        </section>
+
+        <section id="servicios">
+          <h2>Servicios</h2>
+          <ul>
+            <li>Tasaciones para compra-venta</li>
+            <li>Tasaciones para sucesiones</li>
+            <li>Tasaciones para garantías bancarias</li>
+            <li>Tasaciones comerciales</li>
+          </ul>
+        </section>
+
+        <section id="por-que">
+          <h2>¿Por qué elegirnos?</h2>
+          <p>
+            ✔ Profesional con experiencia y matrícula habilitante.<br />
+            ✔ Tasaciones precisas y ajustadas al mercado.<br />
+            ✔ Atención personalizada y confidencialidad garantizada.
+          </p>
+        </section>
+
+        <section id="faq">
+          <h2>Preguntas Frecuentes</h2>
+          <p><strong>¿Cuánto tiempo demora una tasación?</strong><br />Depende del tipo de inmueble, pero en general, en 48-72 horas.</p>
+          <p><strong>¿Qué documentación necesito?</strong><br />Escritura, DNI del propietario y planos del inmueble.</p>
+        </section>
+        <section id="contacto">
+          <h2>Contáctame</h2>
+          <div class="contact-form">
+            <form action="https://formsubmit.co/lizaledesma23@gmail.com" method="POST">
+              <input type="hidden" name="_next" value="https://lizzaledesma.com/mensaje_enviado.html" />
+              <input type="hidden" name="_subject" value="🔔🎊🔔🎊🔔 Nuevo mensaje desde lizaledesma.com 🎊🔔🎊🔔🎊" />
+              <input type="hidden" name="_captcha" value="false" />
+              <input type="hidden" name="_template" value="table" />
+              <input type="hidden" name="_cc" value="6ustav@gmail.com" />
+              <input type="text" name="nombre" placeholder="Nombre" required />
+              <input
+                type="tel"
+                name="telefono"
+                placeholder="Teléfono"
+                pattern="[0-9]{6,15}"
+                inputmode="numeric"
+                maxlength="15"
+                required
+                oninput="this.value = this.value.replace(/\D/g, '')"
+              />
+              <input type="email" name="email" placeholder="Email" required />
+              <textarea name="mensaje" rows="5" placeholder="Mensaje" required></textarea>
+              <button type="submit">Enviar</button>
+            </form>
+          </div>
+        </section>
+        <!-- Botón de WhatsApp -->
+        <a href="_blank" target="_blank" class="whatsapp-button" id="whatsapp-button">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" />
+        </a>
+      </main>
+    </div>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        let phoneNumber = '5493764692295'; // Número sin el signo "+"
+        let whatsappLink = 'https://wa.me/' + phoneNumber;
+        document.getElementById('whatsapp-button').setAttribute('href', whatsappLink);
+      });
+    </script>
+    <script>
+      function toggleMenu() {
+        var menu = document.getElementById('menu');
+        var whatsappButton = document.getElementById('whatsapp-button');
+        if (menu) {
+          var isMenuVisible = menu.classList.toggle('show-menu');
+          if (isMenuVisible) {
+            whatsappButton.classList.add('whatsapp-hidden');
+          } else {
+            whatsappButton.classList.remove('whatsapp-hidden');
+          }
+        }
+      }
+    </script>
+  </body>
+</html>
