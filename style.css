@@ -1,0 +1,266 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #e0dede;
+  color: #333;
+  overflow-x: hidden;
+}
+
+/* ====== ANIMACIÓN DE INTRO ====== */
+.intro {
+  position: fixed; /* Ocupa toda la pantalla */
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: linear-gradient(135deg, #002147, #3a7ca5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #ffffff;
+  text-align: center;
+  z-index: 1000;
+  animation: fadeOut 3s ease-out 3s forwards;
+}
+
+.intro-content {
+  opacity: 0;
+  transform: translateY(-20px);
+  animation: fadeIn 2s ease-out forwards;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    visibility: hidden;
+    display: none;
+  }
+}
+
+/* ====== ANIMACIÓN DEL CONTENIDO PRINCIPAL ====== */
+.content {
+  opacity: 0;
+  animation: showContent 1s ease-out 3.5s forwards;
+}
+
+@keyframes showContent {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+/* Botón de WhatsApp */
+.whatsapp-button {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 60px;
+  height: 60px;
+  background-color: #25d366;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+  transition: transform 0.3s ease;
+  z-index: 1000;
+}
+.whatsapp-button:hover {
+  transform: scale(1.1);
+}
+.whatsapp-button img {
+  width: 35px;
+  height: 35px;
+}
+.whatsapp-hidden {
+  display: none !important;
+}
+/* ====== ESTILOS DEL HEADER ====== */
+header {
+  background: url('/img/lizza-banner.webp') center/cover no-repeat;
+  color: white;
+  padding: 60px 20px;
+  text-align: center;
+  position: relative;
+}
+
+/* ====== MENÚ BURGUER ====== */
+.menu-toggle {
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 1001;
+}
+
+.menu-toggle div {
+  width: 30px;
+  height: 4px;
+  background-color: white;
+  margin: 5px 0;
+}
+
+/* ====== MENÚ DESPLEGABLE ====== */
+nav {
+  display: flex;
+  flex-direction: column;
+  background-color: rgba(0, 67, 143, 0.95);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  z-index: 1000;
+  transform: translateY(-100%);
+  transition: transform 0.5s ease-in-out;
+}
+
+nav.show-menu {
+  transform: translateY(0);
+}
+
+nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+nav ul li {
+  padding: 20px;
+}
+
+nav ul li a {
+  color: white;
+  text-decoration: none;
+  font-size: 32px;
+  font-weight: bold;
+  transition: transform 0.3s ease-in-out;
+}
+
+nav ul li a:hover {
+  transform: scale(1.1);
+}
+
+/* Animación del botón hamburguesa */
+.menu-toggle {
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 1001;
+  transition: transform 0.3s ease-in-out;
+}
+
+.menu-toggle div {
+  width: 30px;
+  height: 4px;
+  background-color: white;
+  margin: 5px 0;
+  transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+}
+
+/* Efecto de animación cuando el menú está abierto */
+.menu-toggle.active div:nth-child(1) {
+  transform: translateY(13.5px) rotate(45deg);
+}
+
+.menu-toggle.active div:nth-child(2) {
+  opacity: 0;
+}
+
+.menu-toggle.active div:nth-child(3) {
+  transform: translateY(-13.5px) rotate(-45deg);
+}
+/* ====== ESTILOS DE FORMULARIO ====== */
+.contact-form {
+  max-width: 500px;
+  margin: 0 auto;
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.contact-form input,
+.contact-form textarea {
+  width: 98%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+.contact-form button {
+  width: 100%;
+  padding: 10px;
+  background-color: #00438f;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.contact-form button:hover {
+  background-color: #002147;
+}
+
+/* ====== ESTILOS DE SECCIONES ====== */
+section {
+  padding: 40px;
+  margin: 20px;
+  border-radius: 10px;
+}
+
+#inicio {
+  background-color: #00438f;
+  color: white;
+}
+#sobre {
+  background-color: #599bc5;
+  color: white;
+}
+#servicios {
+  background-color: #f5f5f5;
+  color: black;
+}
+#por-que {
+  background-color: #00438f;
+  color: white;
+}
+#faq {
+  background-color: #599bc5;
+  color: white;
+}
+#contacto {
+  background-color: #c2c2c2;
+  color: white;
+}
