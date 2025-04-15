@@ -3,8 +3,8 @@ document.addEventListener('DOMContentLoaded', function () {
   let whatsappLink = 'https://wa.me/' + phoneNumber;
   document.getElementById('whatsapp-button').setAttribute('href', whatsappLink);
 
-  // Inicializa la gestión de terrenos
-  gestionarTerrenos();
+  // Inicializa la gestión de terrenos con aleatorización
+  gestionarTerrenosAleatorios();
 });
 
 //////////////////////////////////////////////////////////////////////////////////
@@ -42,8 +42,8 @@ function contactarPorTerreno(nombreTerreno) {
 }
 //////////////////////////////////////////////////////////////////////////////////
 
-// Nueva función para gestionar los terrenos
-function gestionarTerrenos() {
+// Función para gestionar terrenos con aleatorización
+function gestionarTerrenosAleatorios() {
   // Seleccionar el contenedor principal de terrenos
   const contenedorTerrenos = document.querySelector('#terrenos-venta > div[style*="display: flex"]');
 
@@ -51,35 +51,58 @@ function gestionarTerrenos() {
     // Obtener todos los terrenos
     const todosLosTerrenos = Array.from(contenedorTerrenos.querySelectorAll('div[style*="max-width: 350px"]'));
 
-    // Si hay más de 3 terrenos, crear el contenedor para los adicionales
-    if (todosLosTerrenos.length > 3) {
-      // Crear el contenedor para terrenos adicionales si no existe
-      let terrenosAdicionales = document.getElementById('terrenos-adicionales');
+    // Remover todos los terrenos del contenedor
+    todosLosTerrenos.forEach(terreno => terreno.remove());
 
-      if (!terrenosAdicionales) {
-        terrenosAdicionales = document.createElement('div');
-        terrenosAdicionales.id = 'terrenos-adicionales';
-        terrenosAdicionales.style.cssText =
-          'display: none; flex-wrap: wrap; justify-content: center; gap: 30px; max-width: 1200px; margin: 30px auto 0;';
+    // Mezclar aleatoriamente los terrenos
+    shuffleArray(todosLosTerrenos);
 
-        // Insertar después del contenedor principal pero antes del botón
-        const divBoton = document.querySelector('#terrenos-venta > div[style*="text-align: center"]');
-        contenedorTerrenos.parentNode.insertBefore(terrenosAdicionales, divBoton);
+    // Crear el contenedor para terrenos adicionales si no existe
+    let terrenosAdicionales = document.getElementById('terrenos-adicionales');
+
+    if (!terrenosAdicionales) {
+      terrenosAdicionales = document.createElement('div');
+      terrenosAdicionales.id = 'terrenos-adicionales';
+      terrenosAdicionales.style.cssText =
+        'display: none; flex-wrap: wrap; justify-content: center; gap: 30px; max-width: 1200px; margin: 30px auto 0;';
+
+      // Insertar después del contenedor principal pero antes del botón
+      const divBoton = document.querySelector('#terrenos-venta > div[style*="text-align: center"]');
+      contenedorTerrenos.parentNode.insertBefore(terrenosAdicionales, divBoton);
+    }
+
+    // Distribuir los terrenos entre el contenedor principal y el adicional
+    todosLosTerrenos.forEach((terreno, index) => {
+      if (index < 3) {
+        // Los primeros 3 van al contenedor principal
+        contenedorTerrenos.appendChild(terreno);
+      } else {
+        // El resto va al contenedor adicional
+        terrenosAdicionales.appendChild(terreno);
       }
+    });
 
-      // Dejar solo los primeros 3 terrenos en el contenedor principal
-      // y mover el resto al contenedor de terrenos adicionales
-      todosLosTerrenos.forEach((terreno, index) => {
-        if (index >= 3) {
-          terreno.remove();
-          terrenosAdicionales.appendChild(terreno);
-        }
-      });
-
-      // Configurar el botón "Ver más terrenos disponibles"
-      configurarBotonVerMas();
+    // Configurar el botón "Ver más terrenos disponibles"
+    // Solo mostrar el botón si hay terrenos adicionales
+    const divBoton = document.querySelector('#terrenos-venta > div[style*="text-align: center"]');
+    if (divBoton) {
+      if (todosLosTerrenos.length > 3) {
+        divBoton.style.display = 'block';
+        configurarBotonVerMas();
+      } else {
+        divBoton.style.display = 'none';
+      }
     }
   }
+}
+
+// Función para barajar un array (algoritmo Fisher-Yates)
+function shuffleArray(array) {
+  for (let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+  return array;
 }
 
 // Función para configurar el botón "Ver más terrenos"
@@ -108,41 +131,5 @@ function configurarBotonVerMas() {
         }
       }
     });
-  }
-}
-
-// Función para ordenar aleatoriamente los terrenos (opcional)
-function randomizarTerrenos() {
-  // Seleccionar el contenedor principal de terrenos
-  const contenedorTerrenos = document.querySelector('#terrenos-venta > div[style*="display: flex"]');
-  const terrenosAdicionales = document.getElementById('terrenos-adicionales');
-
-  if (contenedorTerrenos) {
-    // Seleccionar todos los terrenos (principales y adicionales)
-    const todosLosTerrenos = [
-      ...Array.from(contenedorTerrenos.querySelectorAll('div[style*="max-width: 350px"]')),
-      ...(terrenosAdicionales ? Array.from(terrenosAdicionales.querySelectorAll('div[style*="max-width: 350px"]')) : []),
-    ];
-
-    // Remover todos los terrenos
-    todosLosTerrenos.forEach(terreno => terreno.remove());
-
-    // Mezclar aleatoriamente
-    for (let i = todosLosTerrenos.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [todosLosTerrenos[i], todosLosTerrenos[j]] = [todosLosTerrenos[j], todosLosTerrenos[i]];
-    }
-
-    // Colocar los primeros 3 en el contenedor principal
-    for (let i = 0; i < Math.min(3, todosLosTerrenos.length); i++) {
-      contenedorTerrenos.appendChild(todosLosTerrenos[i]);
-    }
-
-    // Colocar el resto en terrenos adicionales
-    if (terrenosAdicionales && todosLosTerrenos.length > 3) {
-      for (let i = 3; i < todosLosTerrenos.length; i++) {
-        terrenosAdicionales.appendChild(todosLosTerrenos[i]);
-      }
-    }
   }
 }

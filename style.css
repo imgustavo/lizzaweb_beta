@@ -94,9 +94,19 @@ body {
 .whatsapp-hidden {
   display: none !important;
 }
+
+/* ==== Responsividad1 === */
+.page-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  box-sizing: border-box;
+}
+
 /* ====== ESTILOS DEL HEADER ====== */
 header {
   background: url('/img/lizza-banner.webp') center/cover no-repeat;
+  width: 100%;
   color: white;
   padding: 60px 20px;
   text-align: center;
@@ -236,7 +246,7 @@ nav ul li a:hover {
 /* ====== ESTILOS DE SECCIONES ====== */
 section {
   padding: 40px;
-  margin: 20px;
+  margin: 20px 0;
   border-radius: 10px;
 }
 
